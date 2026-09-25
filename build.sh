@@ -6,7 +6,7 @@
 set -euo pipefail
 
 SRC="src"
-OUT="public"
+OUT="docs"
 HEADER="$SRC/_header.html"
 FOOTER="$SRC/_footer.html"
 
@@ -38,5 +38,5 @@ build_page() {
 echo "Taxi Tip Ostrava — build"
 echo "------------------------"
 build_page "$SRC/index.html"      "$OUT/index.html"
-build_page "$SRC/night-club.html" "$OUT/night-club.html"
+build_page "$SRC/night-club.html" "$OUT/night-cluby-v-ostrave/index.html"
 echo "Hotovo."
