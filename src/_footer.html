@@ -1,0 +1,35 @@
+
+<footer class="site-footer">
+  <div class="container">
+    <p>
+      &copy; 2012&ndash;2026 Taxi Tip Ostrava &mdash; Všechna práva vyhrazena.
+      &ensp;|&ensp;
+      <a href="night-club.html">Diskrétní přeprava</a>
+      &ensp;|&ensp;
+      <a href="mailto:taxitipov@seznam.cz">taxitipov@seznam.cz</a>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Hamburger menu toggle
+  const toggle = document.getElementById('nav-toggle');
+  const nav    = document.getElementById('site-nav');
+  if (toggle && nav) {
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+  }
+
+  // Close nav on link click (mobile)
+  nav && nav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      nav.classList.remove('open');
+      toggle && toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>

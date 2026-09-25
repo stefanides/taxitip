@@ -1,0 +1,789 @@
+/* Taxi Tip Ostrava — main stylesheet */
+
+/* =========================================================
+   Custom properties (from logo palette)
+   ========================================================= */
+:root {
+  --navy:        #1c2b4a;
+  --navy-dark:   #111e33;
+  --gold:        #f5c430;
+  --gold-dark:   #d4a017;
+  --white:       #ffffff;
+  --light:       #f4f6fa;
+  --light-mid:   #e8ecf3;
+  --text:        #1e1e2e;
+  --text-muted:  #555c6e;
+  --red:         #c0392b;
+
+  --radius:      10px;
+  --shadow:      0 4px 18px rgba(0,0,0,.12);
+  --transition:  .2s ease;
+  --max-width:   1100px;
+
+  font-size: 16px;
+}
+
+/* =========================================================
+   Reset & base
+   ========================================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* =========================================================
+   Layout helpers
+   ========================================================= */
+.container {
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+.section {
+  padding-block: 4rem;
+}
+
+.section--light { background: var(--light); }
+.section--navy  { background: var(--navy); color: var(--white); }
+
+.section__title {
+  font-size: clamp(1.5rem, 3vw, 2.1rem);
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.section__title span {
+  color: var(--gold);
+}
+
+/* =========================================================
+   Site header / nav
+   ========================================================= */
+.site-header {
+  background: var(--navy-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,.4);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: .75rem;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-shrink: 0;
+}
+
+.header-logo img {
+  width: 54px;
+  height: 54px;
+  border-radius: 8px;
+}
+
+.header-logo__text {
+  line-height: 1.2;
+}
+
+.header-logo__name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: .02em;
+}
+
+.header-logo__sub {
+  font-size: .75rem;
+  color: var(--gold);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.header-phone {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  background: var(--gold);
+  color: var(--navy-dark);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: .45rem 1rem;
+  border-radius: 6px;
+  transition: background var(--transition);
+  white-space: nowrap;
+}
+
+.header-phone:hover { background: var(--gold-dark); }
+
+.header-phone svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.site-nav ul {
+  display: flex;
+  list-style: none;
+  gap: .25rem;
+}
+
+.site-nav a {
+  display: block;
+  padding: .4rem .75rem;
+  border-radius: 5px;
+  color: rgba(255,255,255,.8);
+  font-size: .88rem;
+  transition: color var(--transition), background var(--transition);
+}
+
+.site-nav a:hover,
+.site-nav a.active {
+  color: var(--gold);
+  background: rgba(255,255,255,.06);
+}
+
+/* hamburger */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .25rem;
+}
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: var(--transition);
+}
+
+/* =========================================================
+   Hero section
+   ========================================================= */
+.hero {
+  background: var(--navy);
+  padding-block: 4.5rem 4rem;
+  text-align: center;
+  color: var(--white);
+}
+
+.hero__logo {
+  width: 110px;
+  height: 110px;
+  border-radius: 16px;
+  margin-inline: auto;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 6px 24px rgba(0,0,0,.4);
+}
+
+.hero__title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -.01em;
+  line-height: 1.1;
+}
+
+.hero__title span { color: var(--gold); }
+
+.hero__sub {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: rgba(255,255,255,.75);
+  margin-top: .6rem;
+  margin-bottom: 2rem;
+}
+
+.hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  background: var(--gold);
+  color: var(--navy-dark);
+  font-size: 1.35rem;
+  font-weight: 800;
+  padding: .85rem 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(245,196,48,.35);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.hero__cta:hover {
+  background: var(--gold-dark);
+  transform: translateY(-2px);
+}
+
+.hero__cta svg { width: 22px; height: 22px; }
+
+.hero__note {
+  margin-top: 1rem;
+  font-size: .85rem;
+  color: rgba(255,255,255,.55);
+}
+
+.hero__note a {
+  color: rgba(255,255,255,.75);
+  text-decoration: underline;
+}
+
+/* =========================================================
+   Services cards
+   ========================================================= */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.25rem;
+}
+
+.service-card {
+  background: var(--white);
+  border: 1px solid var(--light-mid);
+  border-radius: var(--radius);
+  padding: 1.6rem 1.4rem;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0,0,0,.14);
+}
+
+.service-card__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.service-card__title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--navy);
+}
+
+.service-card__desc {
+  font-size: .9rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.service-card--discrete { border-top: 3px solid var(--navy); }
+
+.service-card--wide {
+  grid-column: 1 / -1;
+  flex-direction: row;
+  align-items: center;
+  gap: 1.25rem;
+  text-decoration: none;
+  border-top: 3px solid var(--navy);
+}
+
+.service-card--wide .service-card__icon {
+  font-size: 2.2rem;
+  flex-shrink: 0;
+}
+
+.service-card--wide__body {
+  flex: 1;
+}
+
+.service-card--wide__body .service-card__desc {
+  margin: 0;
+}
+
+.service-card--wide__cta {
+  flex-shrink: 0;
+  font-size: .9rem;
+  font-weight: 700;
+  color: var(--navy);
+  white-space: nowrap;
+  padding: .45rem .9rem;
+  border: 2px solid var(--navy);
+  border-radius: 6px;
+  transition: background var(--transition), color var(--transition);
+}
+
+.service-card--wide:hover .service-card--wide__cta {
+  background: var(--navy);
+  color: var(--white);
+}
+
+@media (max-width: 480px) {
+  .service-card--wide {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .service-card--wide__cta { align-self: flex-start; }
+}
+
+/* =========================================================
+   Pricing
+   ========================================================= */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.pricing-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.pricing-card__head {
+  background: var(--navy);
+  color: var(--white);
+  padding: .9rem 1.25rem;
+  font-weight: 700;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.pricing-card__head .badge {
+  background: var(--gold);
+  color: var(--navy-dark);
+  font-size: .7rem;
+  padding: .15rem .5rem;
+  border-radius: 20px;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+
+.pricing-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: .92rem;
+}
+
+.pricing-table tr:not(:last-child) td {
+  border-bottom: 1px solid var(--light-mid);
+}
+
+.pricing-table td {
+  padding: .7rem 1.25rem;
+  color: var(--text);
+}
+
+.pricing-table td:last-child {
+  text-align: right;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pricing-table .highlight td {
+  background: #fffbea;
+  color: var(--gold-dark);
+  font-weight: 700;
+}
+
+.pricing-note {
+  margin-top: 1.25rem;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  font-size: .95rem;
+  line-height: 1.6;
+}
+
+.pricing-note strong { color: var(--gold); }
+
+/* =========================================================
+   Promo / akce
+   ========================================================= */
+.promo-box {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.promo-box__icon {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.promo-box__title {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: .5rem;
+}
+
+.promo-box__title span { color: var(--gold-dark); }
+
+.promo-box p { color: var(--text-muted); font-size: .93rem; margin-bottom: .5rem; }
+
+.promo-box ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .4rem .75rem;
+  margin-top: .5rem;
+}
+
+.promo-box ul li {
+  background: var(--light);
+  border-radius: 20px;
+  padding: .25rem .75rem;
+  font-size: .85rem;
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.promo-box ul li::before { content: "✓ "; color: var(--gold-dark); }
+
+/* =========================================================
+   Vehicle section
+   ========================================================= */
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.vehicle-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+}
+
+.vehicle-features li {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: .95rem;
+}
+
+.vehicle-features li::before {
+  content: "✓";
+  background: var(--gold);
+  color: var(--navy-dark);
+  font-weight: 800;
+  font-size: .7rem;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.payment-logos {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.payment-logos__label {
+  font-size: .8rem;
+  color: var(--text-muted);
+  margin-right: .25rem;
+}
+
+.payment-pill {
+  background: var(--light-mid);
+  border-radius: 6px;
+  padding: .3rem .7rem;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--navy);
+  border: 1px solid rgba(0,0,0,.08);
+}
+
+.vehicle-img-placeholder {
+  background: var(--light-mid);
+  border-radius: var(--radius);
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+}
+
+/* =========================================================
+   Contact section
+   ========================================================= */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.contact-card {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+
+.contact-card__title {
+  font-size: .8rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: .75rem;
+}
+
+.contact-phone-link {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--white);
+  transition: color var(--transition);
+}
+
+.contact-phone-link:hover { color: var(--gold); }
+
+.contact-phone-link svg { width: 28px; height: 28px; flex-shrink: 0; }
+
+.contact-sub {
+  margin-top: .5rem;
+  font-size: .85rem;
+  color: rgba(255,255,255,.55);
+}
+
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  margin-top: .75rem;
+  font-size: 1rem;
+  color: rgba(255,255,255,.85);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact-email:hover { color: var(--gold); }
+
+.contact-tip {
+  background: rgba(245,196,48,.1);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  padding: .9rem 1rem;
+  font-size: .88rem;
+  color: rgba(255,255,255,.8);
+  line-height: 1.5;
+}
+
+.map-placeholder {
+  grid-column: 1 / -1;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16/6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .9rem;
+  color: rgba(255,255,255,.4);
+  position: relative;
+}
+
+.map-placeholder img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: .85;
+}
+
+.map-placeholder__label {
+  position: relative;
+  z-index: 1;
+  background: var(--navy-dark);
+  padding: .4rem .8rem;
+  border-radius: 6px;
+  font-size: .85rem;
+}
+
+/* =========================================================
+   Operator info (provozovatel)
+   ========================================================= */
+.operator-info {
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(255,255,255,.15);
+}
+
+.operator-info__title {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.4);
+  margin-bottom: .75rem;
+}
+
+.operator-info__dl {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 2.5rem;
+  list-style: none;
+}
+
+.operator-info__dl > div {
+  display: flex;
+  gap: .4rem;
+  font-size: .85rem;
+}
+
+.operator-info__dl dt {
+  color: rgba(255,255,255,.45);
+  font-weight: 400;
+}
+
+.operator-info__dl dd {
+  color: rgba(255,255,255,.8);
+  font-weight: 600;
+}
+
+/* =========================================================
+   Site footer
+   ========================================================= */
+.site-footer {
+  background: var(--navy-dark);
+  color: rgba(255,255,255,.5);
+  padding-block: 1.5rem;
+  font-size: .82rem;
+  text-align: center;
+}
+
+.site-footer a {
+  color: rgba(255,255,255,.65);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.site-footer a:hover { color: var(--gold); }
+
+/* =========================================================
+   Night club page specifics
+   ========================================================= */
+.nc-hero {
+  background: var(--navy);
+  padding-block: 3.5rem;
+  text-align: center;
+  color: var(--white);
+}
+
+.nc-hero__title {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 900;
+}
+
+.nc-hero__sub {
+  color: rgba(255,255,255,.7);
+  margin-top: .5rem;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.clubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .75rem;
+  margin-top: 1.5rem;
+}
+
+.club-item {
+  background: var(--white);
+  border: 1px solid var(--light-mid);
+  border-radius: var(--radius);
+  padding: .85rem 1.1rem;
+  font-size: .92rem;
+  color: var(--navy);
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+/* =========================================================
+   Responsive
+   ========================================================= */
+@media (max-width: 768px) {
+  .site-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy-dark);
+    padding: .75rem 1.25rem 1.25rem;
+    box-shadow: 0 6px 18px rgba(0,0,0,.3);
+  }
+
+  .site-nav.open { display: block; }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .site-nav a {
+    font-size: .95rem;
+    padding: .6rem .5rem;
+  }
+
+  .nav-toggle { display: flex; }
+
+  .header-phone { font-size: .85rem; padding: .4rem .75rem; }
+
+  .vehicle-grid { grid-template-columns: 1fr; }
+  .vehicle-img-placeholder { display: none; }
+
+  .contact-grid { grid-template-columns: 1fr; }
+  .map-placeholder { grid-column: 1; aspect-ratio: 16/7; }
+
+  .promo-box { grid-template-columns: 1fr; }
+  .promo-box__icon { font-size: 2.5rem; }
+
+  .hero { padding-block: 3rem 2.5rem; }
+}
+
+@media (max-width: 480px) {
+  .pricing-grid { grid-template-columns: 1fr; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .contact-phone-link { font-size: 1.5rem; }
+}
